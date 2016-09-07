@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - App Veiculos</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("App-Veicles", "Index", "Veicles", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - IsaíasNAS</p>
+        </footer>
+
+        @* modal init *@
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <form id="modalForm">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="modalHead"></h4>
+                        </div>
+                        <div class="modal-body" id="modalBody">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modalClose">Sair</button>
+                            <button type="submit" class="btn btn-primary" data-id="" id="modalExecute"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        @* modal end *@
+
+        @* modal init delete *@
+        <div class="modal fade" id="myModalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-body" id="modalBody">
+                        deseja realmente excluir este item ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseDelete">Sair</button>
+                        <button type="button" class="btn btn-danger" id="modalExecuteDelete">Deletar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* modal end delete *@
+
+        @* modal init test *@
+        <div class="modal fade" id="myModalTest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modalHead">Test Drive</h4>
+                    </div>
+                    <div class="modal-body" id="modalBodyTest">                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* modal end test *@
+
+    </div>
+
+
+    <div id="formAdd" style="display:none">
+        @*<form>*@
+        <div class="row">
+            <div class="form-group col-lg-3">
+                <label for="formAddTipo" class="control-label">Escolha:</label>
+                <select class="form-control" id="formAddTipo" name="formAddTipo">
+                    <option value="0">Camaro</option>
+                    <option value="1">Jeep</option>
+                </select>
+            </div>
+            <div class="form-group col-lg-9">
+                <label for="formAddNome" class="control-label">Descrição:</label>
+                <input type="text" class="form-control" id="formAddNome" name="formAddNome">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-lg-3">
+                <label for="formAddAno" class="control-label">Ano:</label>
+                <input type="text" class="form-control" id="formAddAno" name="formAddAno">
+            </div>
+            <div class="form-group col-lg-6">
+                <label for="formAddCor" class="control-label">Cor:</label>
+                <select class="form-control" id="formAddCor" name="formAddCor"></select>
+            </div>
+            <div class="form-group col-lg-3" style="display:none" id="divOffRoad">
+                <label for="formAddOffRoad" class="control-label">OffRoad:</label>
+                <select class="form-control" id="formAddOffRoad" name="formAddOffRoad">
+                    <option value="1">Sim</option>
+                    <option value="2">Não</option>
+                </select>
+            </div>
+        </div>
+
+        @*</form>*@
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    @RenderSection("scripts", required: false)
+    <script>var _rootPath = '@Url.Content("~/Content/imgs/")'</script>
+    <script src="~/Scripts/Api/base.js"></script>
+</body>
+</html>
